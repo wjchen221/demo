@@ -1,23 +1,19 @@
 package com.wjchen.demo.base;
 
 import java.util.List;
-import java.util.Optional;
 
-public class BaseServiceImpl<T> implements BaseService<T> {
+public abstract class BaseServiceImpl<T> implements BaseService<T> {
 
-    private BaseDao<T> baseDao;
-    public void setBaseDao(BaseDao<T> baseDao) {
-        this.baseDao = baseDao;
-    }
+    protected abstract BaseDao getDao();
 
     @Override
     public void save(T entity) {
-        baseDao.save(entity);
+        getDao().save(entity);
     }
 
     @Override
     public void delete(T entity) {
-        baseDao.delete(entity);
+        getDao().delete(entity);
     }
 
     @Override
@@ -27,11 +23,11 @@ public class BaseServiceImpl<T> implements BaseService<T> {
 
     @Override
     public T findById(String id) {
-        return (T) baseDao.findById(id);
+        return (T) getDao().findById(id);
     }
 
     @Override
     public List<T> getAll() {
-        return baseDao.findAll();
+        return getDao().findAll();
     }
 }
