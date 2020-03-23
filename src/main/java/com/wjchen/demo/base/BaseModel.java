@@ -3,10 +3,11 @@ package com.wjchen.demo.base;
 import com.wjchen.demo.model.User;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 
 @MappedSuperclass
-public class BaseModel {
+public class BaseModel implements Serializable{
     /**
      * id 使用uuid,32位字符串
      */
