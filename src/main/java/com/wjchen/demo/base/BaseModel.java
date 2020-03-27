@@ -1,6 +1,7 @@
 package com.wjchen.demo.base;
 
 import com.wjchen.demo.model.User;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -20,13 +21,15 @@ public class BaseModel implements Serializable{
      * 创建时间
      */
     @Column(name="createdate")
-    private Date createDate;
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private Date createDate = new Date();
 
     /**
      * 更新时间
      */
     @Column(name="updatedate")
-    private Date updateDate;
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private Date updateDate = new Date();
 
     /**
      * 创建人
