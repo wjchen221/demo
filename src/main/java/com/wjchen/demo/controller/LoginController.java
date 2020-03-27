@@ -10,4 +10,9 @@ public class LoginController {
     public String index(){
         return "index";
     }
+
+    @RequestMapping("/toLogin")
+    public String toLogin(){
+        return "page/login/login";
+    }
 }
