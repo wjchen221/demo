@@ -12,9 +12,9 @@ layui.use(['form','layer','jquery'],function(){
     //登录按钮
     form.on("submit(login)",function(data){
         $(this).text("登录中...").attr("disabled","disabled").addClass("layui-disabled");
-        setTimeout(function(){
-            window.location.href = "/layuicms2.0";
-        },1000);
+        $.ajax("/login",{data:obj.field},function(res){
+
+        })
         return false;
     })
 

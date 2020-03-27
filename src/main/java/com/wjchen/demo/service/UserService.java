@@ -9,4 +9,6 @@ public interface UserService {
     public User save(User user);
 
     public User getById(String id);
+
+    public User getByUsername(String userName);
 }
