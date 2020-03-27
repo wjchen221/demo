@@ -8,12 +8,17 @@ layui.use(['form','layer','jquery'],function(){
             time:5000
         });
     })
-
     //登录按钮
     form.on("submit(login)",function(data){
         $(this).text("登录中...").attr("disabled","disabled").addClass("layui-disabled");
-        $.ajax("/login",{data:obj.field},function(res){
-
+        $.ajax({
+            url:'/login',
+            method:'post',
+            data:data.field,
+            dataType:'JSON',
+            success:function(res){
+                layer.msg(res.msg);
+            }
         })
         return false;
     })

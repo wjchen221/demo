@@ -60,7 +60,7 @@ public class ShiroConfig {
         // 设置登录跳转Url
         bean.setLoginUrl("/toLogin");
         // 设置未授权提示Url
-        bean.setUnauthorizedUrl("/error/unAuth");
+        bean.setUnauthorizedUrl("/page/404");
         /**
          * anon：匿名用户可访问
          * authc：认证用户可访问
@@ -74,6 +74,11 @@ public class ShiroConfig {
         filterMap.put("/vip/index","roles[vip]");
         filterMap.put("/druid/**", "anon");
         filterMap.put("/static/**","anon");
+        filterMap.put("/css/**","anon");
+        filterMap.put("/images/**","anon");
+        filterMap.put("/js/**","anon");
+        filterMap.put("/layui/**","anon");
+        filterMap.put("/json/**","anon");
 
         filterMap.put("/**","authc");
         filterMap.put("/logout", "logout");

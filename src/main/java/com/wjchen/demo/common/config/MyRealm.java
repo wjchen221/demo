@@ -69,7 +69,7 @@ public class MyRealm extends AuthorizingRealm {
         UsernamePasswordToken token = (UsernamePasswordToken)authenticationToken;
         String username = token.getUsername();
         //2.根据用户名查询用户信息
-        User user = userService.getByUsername(username);
+        User user = userService.findByUsername(username);
         //如果用户不存在，返回null 登陆验证不通过
         if(user==null){
             throw new UnknownAccountException();
@@ -83,7 +83,7 @@ public class MyRealm extends AuthorizingRealm {
          * 参数3：盐值  md5加密中使用的盐(一个字符串)，该值需要保存到数据库
          * 参数4：realm的名称
          */
-        SimpleAuthenticationInfo info= new SimpleAuthenticationInfo(user,user.getPassword(),"");
+        SimpleAuthenticationInfo info= new SimpleAuthenticationInfo(user,user.getPassword(),ByteSource.Util.bytes(user.getUsername()),getName());
         return info;
 
     }
