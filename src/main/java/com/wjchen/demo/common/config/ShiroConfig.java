@@ -11,6 +11,7 @@ import org.apache.shiro.spring.web.config.DefaultShiroFilterChainDefinition;
 import org.apache.shiro.spring.web.config.ShiroFilterChainDefinition;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.apache.shiro.web.servlet.SimpleCookie;
+import org.apache.shiro.web.session.mgt.DefaultWebSessionManager;
 import org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
@@ -81,7 +82,7 @@ public class ShiroConfig {
         filterMap.put("/json/**","anon");
 
         filterMap.put("/**","authc");
-        filterMap.put("/logout", "logout");
+        filterMap.put("/toLogin", "logout");
 
         bean.setFilterChainDefinitionMap(filterMap);
         return bean;
@@ -96,7 +97,17 @@ public class ShiroConfig {
         DefaultWebSecurityManager securityManager =new DefaultWebSecurityManager();
         // 关联realm.
         securityManager.setRealm(myRealm(hashedCredentialsMatcher));
+        securityManager.setSessionManager(sessionManager());
         return securityManager;
     }
+
+    @Bean(name = "sessionManager")
+    public DefaultWebSessionManager sessionManager() {
+        DefaultWebSessionManager sessionManager = new DefaultWebSessionManager();
+        // 设置session过期时间3600s
+        sessionManager.setGlobalSessionTimeout(3600000L);
+        return sessionManager;
+    }
+
 
 }
