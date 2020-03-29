@@ -11,15 +11,24 @@ layui.use(['form','layer','jquery'],function(){
     //登录按钮
     form.on("submit(login)",function(data){
         $(this).text("登录中...").attr("disabled","disabled").addClass("layui-disabled");
+        layer.load();
+        var that = $(this);
         $.ajax({
             url:'/login',
             method:'post',
             data:data.field,
             dataType:'JSON',
             success:function(res){
-                layer.msg(res.msg);
+                if(res.code == '200'){
+                    window.location='/';
+                }else{
+                    layer.msg(res.msg);
+                }
+                that.text("登录").attr("disabled",false).removeClass("layui-disabled");
+                layer.closeAll("loading");
             }
         })
+
         return false;
     })
 
