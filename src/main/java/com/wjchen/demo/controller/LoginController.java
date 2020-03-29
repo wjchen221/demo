@@ -1,5 +1,7 @@
 package com.wjchen.demo.controller;
 
+import com.wjchen.demo.base.BaseController;
+import com.wjchen.demo.common.utils.Result;
 import com.wjchen.demo.model.User;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.IncorrectCredentialsException;
@@ -8,17 +10,24 @@ import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import java.util.HashMap;
+import java.util.Map;
 
 @Controller
-public class LoginController {
+public class LoginController extends BaseController {
 
     @RequestMapping("/")
     public String index(){
         return "index";
     }
+    @RequestMapping("/index")
+    public String index2(){
+        return "index";
+    }
+
 
     @RequestMapping("/toLogin")
     public String toLogin(){
@@ -26,7 +35,8 @@ public class LoginController {
     }
 
     @RequestMapping("/login")
-    public String login(User user, HttpServletRequest request){
+    @ResponseBody
+    public Result login(User user, HttpServletRequest request){
         // 1.获取Subject
         Subject subject = SecurityUtils.getSubject();
         // 2.封装用户数据
@@ -34,13 +44,26 @@ public class LoginController {
         // 3.执行登录方法
         try{
             subject.login(token);
-            return "redirect:/index";
+            return success("登录成功");
         } catch (UnknownAccountException e){
-            e.printStackTrace();
-            request.setAttribute("msg","用户名不存在！");
+//            result.put("msg","用户名不存在！");
+
         } catch (IncorrectCredentialsException e){
-            request.setAttribute("msg","密码错误！");
+//            result.put("msg","密码错误！");
         }
-        return "login";
+        return fail("账号或密码错误！");
+    }
+    /**
+     * 跳后台首页
+     */
+
+    @RequestMapping("/main")
+    public String main(){
+        return "page/main";
+    }
+
+    @RequestMapping("/newsList")
+    public String newsList(){
+        return "page/news/newsList";
     }
 }
