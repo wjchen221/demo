@@ -63,4 +63,14 @@ public class User extends BaseModel {
     public void setState(String state) {
         this.state = state;
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", openId='" + openId + '\'' +
+                ", state='" + state + '\'' +
+                '}';
+    }
 }
