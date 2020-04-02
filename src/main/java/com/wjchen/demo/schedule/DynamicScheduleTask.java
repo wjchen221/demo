@@ -39,27 +39,33 @@ public class DynamicScheduleTask implements SchedulingConfigurer {
                 //2.设置执行周期(Trigger)
                 triggerContext -> {
                     //2.1 从数据库获取执行周期
-                    Info as = infoService.findOne("1");
-                    //ceshi
+                    Info as = null;
                     try {
-                        Object bean = SpringUtil.getBean("userService");
-                        Class c=bean.getClass();
-                        Object[] values = new Object[1];
-                        Class[] types = new Class[1];
-                        values[0]="zhangsan";
-                        types[0]=String.class;
-                        Method method = c.getMethod("findByUsername",types);
-                        Object resultData=method.invoke(bean,values);
-                        LOGGER.info(resultData.toString());
-                    } catch (Exception e) {
-                        e.printStackTrace();
+//                        as = infoService.findOne("1");
+                        //ceshi
+                        try {
+                            Object bean = SpringUtil.getBean("userService");
+                            Class c = bean.getClass();
+                            Object[] values = new Object[1];
+                            Class[] types = new Class[1];
+                            values[0] = "zhangsan";
+                            types[0] = String.class;
+                            Method method = c.getMethod("findByUsername", types);
+                            Object resultData = method.invoke(bean, values);
+                            LOGGER.info(resultData.toString());
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }catch (Exception e){
+//                        as = new Info();
                     }
                     //2.2 合法性校验.
-                    if(as.getCorn() == null){
-                        as.setCorn("0/5 * * * * ?");
-                    }
+//                    if(as.getCorn() == null){
+//                        as.setCorn("0 0 0 1/1 * ?");
+//                    }
                     //2.3 返回执行周期(Date)
-                    return new CronTrigger(as.getCorn()).nextExecutionTime(triggerContext);
+//                    return new CronTrigger(as.getCorn()).nextExecutionTime(triggerContext);
+                    return new CronTrigger("0 0 0 1/1 * ?").nextExecutionTime(triggerContext);
                 }
         );
    /*     try {

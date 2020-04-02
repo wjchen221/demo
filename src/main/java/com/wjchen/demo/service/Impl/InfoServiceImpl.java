@@ -17,6 +17,6 @@ public class InfoServiceImpl implements InfoService {
 
     @Override
     public Info findOne(String id) {
-        return infoDao.findById(id).get();
+        return infoDao.getOne(id);
     }
 }
