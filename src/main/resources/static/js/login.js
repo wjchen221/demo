@@ -14,13 +14,13 @@ layui.use(['form','layer','jquery'],function(){
         layer.load();
         var that = $(this);
         $.ajax({
-            url:'/login',
+            url:'login',
             method:'post',
             data:data.field,
             dataType:'JSON',
             success:function(res){
                 if(res.code == '200'){
-                    window.location='/';
+                    window.location='/wjtest/index';
                 }else{
                     layer.msg(res.msg);
                 }

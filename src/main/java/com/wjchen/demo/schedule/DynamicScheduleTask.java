@@ -65,7 +65,7 @@ public class DynamicScheduleTask implements SchedulingConfigurer {
 //                    }
                     //2.3 返回执行周期(Date)
 //                    return new CronTrigger(as.getCorn()).nextExecutionTime(triggerContext);
-                    return new CronTrigger("0 0 0 1/1 * ?").nextExecutionTime(triggerContext);
+                    return new CronTrigger("0/20 * * * * ?").nextExecutionTime(triggerContext);
                 }
         );
    /*     try {

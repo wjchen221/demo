@@ -19,14 +19,14 @@ import java.util.Map;
 @Controller
 public class LoginController extends BaseController {
 
-    @RequestMapping("/")
-    public String index(){
-        return "index";
-    }
-    @RequestMapping("/index")
-    public String index2(){
-        return "index";
-    }
+//    @RequestMapping("/")
+//    public String index(){
+//        return "index";
+//    }
+//    @RequestMapping("/index")
+//    public String index2(){
+//        return "index";
+//    }
 
 
     @RequestMapping("/toLogin")
