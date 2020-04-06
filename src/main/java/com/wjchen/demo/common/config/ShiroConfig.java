@@ -61,7 +61,7 @@ public class ShiroConfig {
         // 设置登录跳转Url
         bean.setLoginUrl("/toLogin");
         // 设置未授权提示Url
-        bean.setUnauthorizedUrl("/page/404");
+        bean.setUnauthorizedUrl("/error/404");
         /**
          * anon：匿名用户可访问
          * authc：认证用户可访问
@@ -70,19 +70,20 @@ public class ShiroConfig {
          * role：对应角色权限可访问
          **/
         Map<String, String> filterMap = new LinkedHashMap<>();
-        filterMap.put("/login","anon");
-        filterMap.put("/user/index","authc");
-        filterMap.put("/vip/index","roles[vip]");
-        filterMap.put("/druid/**", "anon");
-        filterMap.put("/static/**","anon");
-        filterMap.put("/css/**","anon");
-        filterMap.put("/images/**","anon");
-        filterMap.put("/js/**","anon");
-        filterMap.put("/layui/**","anon");
-        filterMap.put("/json/**","anon");
-
-        filterMap.put("/**","authc");
-        filterMap.put("/toLogin", "logout");
+//        filterMap.put("/login","anon");
+//        filterMap.put("/user/index","authc");
+//        filterMap.put("/vip/index","roles[vip]");
+//        filterMap.put("/druid/**", "anon");
+//        filterMap.put("/static/**","anon");
+//        filterMap.put("/css/**","anon");
+//        filterMap.put("/images/**","anon");
+//        filterMap.put("/js/**","anon");
+//        filterMap.put("/layui/**","anon");
+//        filterMap.put("/json/**","anon");
+//
+         filterMap.put("/default/**","anon");
+         filterMap.put("/**","anon");
+//        filterMap.put("/toLogin", "logout");
 
         bean.setFilterChainDefinitionMap(filterMap);
         return bean;

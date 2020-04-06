@@ -1,5 +1,6 @@
 package com.wjchen.demo.base;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.wjchen.demo.model.User;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -35,6 +36,7 @@ public class BaseModel implements Serializable{
      * 创建人
      */
     @OneToOne
+    @JsonBackReference
     @JoinColumn(name="creatorid",referencedColumnName = "id")
     private User creator;
 

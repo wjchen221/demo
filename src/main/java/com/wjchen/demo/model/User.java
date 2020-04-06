@@ -11,6 +11,7 @@ import javax.persistence.Table;
 @Table(name="t_user")
 @GenericGenerator(name = "jpa-uuid", strategy = "uuid")
 public class User extends BaseModel {
+
     /**
      * 用户名
      */
@@ -31,6 +32,20 @@ public class User extends BaseModel {
      */
     @Column(name="state")
     private String state;
+
+    /**
+     * 性别
+     */
+    @Column(name="gender")
+    private String gender;
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
 
     public String getUsername() {
         return username;

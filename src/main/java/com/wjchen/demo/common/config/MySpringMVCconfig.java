@@ -14,7 +14,9 @@ public class MySpringMVCconfig implements WebMvcConfigurer {
 
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
-        registry.addViewController("/").setViewName("index");
-        registry.addViewController("/index").setViewName("index");
+//        registry.addViewController("/").setViewName("index");
+//        registry.addViewController("/index").setViewName("index");
+        registry.addViewController("/user/userList").setViewName("pages/user/list");
+        registry.addViewController("/user/edit").setViewName("pages/user/userform");
     }
 }

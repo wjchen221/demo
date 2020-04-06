@@ -19,16 +19,6 @@ import java.util.Map;
 @Controller
 public class LoginController extends BaseController {
 
-//    @RequestMapping("/")
-//    public String index(){
-//        return "index";
-//    }
-//    @RequestMapping("/index")
-//    public String index2(){
-//        return "index";
-//    }
-
-
     @RequestMapping("/toLogin")
     public String toLogin(){
         return "page/login/login";
@@ -52,18 +42,5 @@ public class LoginController extends BaseController {
 //            result.put("msg","密码错误！");
         }
         return fail("账号或密码错误！");
-    }
-    /**
-     * 跳后台首页
-     */
-
-    @RequestMapping("/main")
-    public String main(){
-        return "page/main";
-    }
-
-    @RequestMapping("/newsList")
-    public String newsList(){
-        return "page/news/newsList";
     }
 }
