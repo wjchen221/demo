@@ -9,7 +9,10 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 
 @Controller
@@ -56,6 +59,33 @@ public abstract class BaseController<T> {
         return defaultValue;
     }
 
+    //获取所有的参数
+    protected Map<String,Object> getParamMap(){
+        Map<String,Object> parameters = new HashMap<String, Object>();
+        Map map = getRequest().getParameterMap();
+        Set keys = map.keySet();
+        for(Object key : keys){
+            Object o=getRequest().getParameter(key.toString());
+            if(o instanceof String ){
+                if("".equals(o)){
+                    o=null;
+                }
+            }
+            parameters.put(key.toString(),o);
+        }
+        return parameters;
+    }
+
+    protected Map<String,String> getParamMap2(){
+        Map<String,String> parameters = new HashMap<String, String>();
+        Map map = getRequest().getParameterMap();
+        Set keys = map.keySet();
+        for(Object key : keys){
+            parameters.put(key.toString(),getRequest().getParameter(key.toString()));
+        }
+
+        return parameters;
+    }
     /***********   oss        ****************/
     /**
      * 要获取oss的上传路径的方法

@@ -10,7 +10,6 @@ import java.util.List;
 
 @Service
 public interface UserService extends BaseService<User> {
-    public User save(User user);
 
     public User getById(String id);
 

@@ -23,11 +23,6 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
     private UserDao userDao;
 
     @Override
-    public User save(User user) {
-        return userDao.save(user);
-    }
-
-    @Override
     public User getById(String id) {
         return userDao.getOne(id);
     }

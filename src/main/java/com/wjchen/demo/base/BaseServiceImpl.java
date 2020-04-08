@@ -21,6 +21,32 @@ public abstract class BaseServiceImpl<T> implements BaseService<T>{
 
     public abstract BaseDao<T> getDao();
 
+    @Override
+    public T save(T entity) {
+        return getDao().save(entity);
+    }
+
+    @Override
+    public void delete(T entity) {
+        getDao().delete(entity);
+    }
+
+    @Override
+    public T update(T entity) {
+        //该方法没用
+        return null;
+    }
+
+    @Override
+    public T findById(String id) {
+        return (T) getDao().findById(id);
+    }
+
+    @Override
+    public List<T> getAll() {
+        return getDao().findAll();
+    }
+
     /**
      * 分页查询的条件
      * @param cb
@@ -33,15 +59,10 @@ public abstract class BaseServiceImpl<T> implements BaseService<T>{
     public Result getPage(Pageable page,T entity) {
         Page<T> list = getDao().findAll(new Specification<T>() {
             private static final long serialVersionUID = 1L;
-
             @Override
             public Predicate toPredicate(Root<T> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
                 List<Predicate> list = getParams(cb,root,entity);
-//                if(du.getUserId()!=null) {
-//                    list.add(cb.equal(root.get("userId").as(Long.class),du.getUserId()));
-//                }
                 Predicate[] pre = new Predicate[list.size()];
-                //query.orderBy(cb.desc(cb.max(root.get("id"))));
                 query.where(list.toArray(pre));
                 return query.getRestriction();
             }
