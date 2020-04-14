@@ -14,7 +14,6 @@ public class TestController extends BaseController {
     @ResponseBody
     public String test(){
         Map<String,Object> paramMap = getParamMap();
-
         return "wjchen221";
     }
 
